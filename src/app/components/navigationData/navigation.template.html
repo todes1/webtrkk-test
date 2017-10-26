@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="col-md-12">
+        <h1>Navigation Data for </h1>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-8">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th sort by="order" reverse="reverse" order="'page'" >Page</th>
+                    <th sort by="order" reverse="reverse" order="'timestamp'" start="'timestamp'">Timestamap</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in $ctrl.navigationData | orderBy:order:reverse">
+                    <td>{{item.page}}</td>
+                    <td>{{item.timestamp}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+        <button ng-click="$ctrl.goToOverview();" type="button" class="btn btn-primary">Back to Overview</button>
+</div>

@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="col-md-12">
+        <h1>Customer Overview</h1>
+        <button ng-click="$ctrl.editCreateCustomer(item.customerId, 'create');" type="button" class="btn btn-primary">Add new customer</button>
+    </div>
+    <div class="clearfix"></div>
+    <div class="col-md-8 table-wrapper">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th sort by="order" reverse="reverse" order="'firstName'">First Name</th>
+                    <th sort by="order" reverse="reverse" order="'lastName'" start="'lastName'">Last Name
+                    </th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Options</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="item in $ctrl.customers | orderBy:order:reverse">
+                    <td>{{item.firstName}}</td>
+                    <td>{{item.lastName}}</td>
+                    <td>{{item.birthday | ageFilter}}</td>
+                    <td>{{item.gender | genderFilter}}</td>
+                    <td class="text-center">
+                        <button ng-click="$ctrl.editCreateCustomer(item.customerId, 'edit');"  type="button" class="btn btn-primary ">Edit</button>
+                        <button ng-click="$ctrl.deleteCustomer(item.customerId);"  type="button" class="btn btn-primary ">Delete</button>
+                        <button ng-click="$ctrl.navigationDetails(item.customerId);"  type="button" class="btn btn-success ">Navi</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<div>

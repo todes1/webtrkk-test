@@ -1,25 +1,30 @@
 import angular from 'angular';
+import uiRouter from 'angular-ui-router';
+import datepicker from 'angularjs-datepicker'
 
-import '../style/app.css';
+import Components from './components/components';
+import AppComponent from './app.component';
+import servicesModule from './services/services.module';
+import FiltersModule from './filters/filters.module';
+import directivesModule from './directives/directives.module';
 
-let app = () => {
-  return {
-    template: require('./app.html'),
-    controller: 'AppCtrl',
-    controllerAs: 'app'
-  }
-};
-
-class AppCtrl {
-  constructor() {
-    this.url = 'https://github.com/preboot/angular-webpack';
-  }
-}
+import '../style/app.scss';
 
 const MODULE_NAME = 'app';
-
-angular.module(MODULE_NAME, [])
-  .directive('app', app)
-  .controller('AppCtrl', AppCtrl);
+const requires = [
+    uiRouter,
+    '720kb.datepicker',
+    FiltersModule,
+    directivesModule,
+    Components,
+]
+angular.module('app', requires)
+.config(($locationProvider) => {
+    "ngInject";
+    // @see: https://github.com/angular-ui/ui-router/wiki/Frequently-Asked-Questions
+    // #how-to-configure-your-server-to-work-with-html5mode
+    $locationProvider.html5Mode(true);
+})
+.component(MODULE_NAME, AppComponent)
 
 export default MODULE_NAME;

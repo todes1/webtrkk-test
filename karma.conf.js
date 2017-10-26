@@ -16,6 +16,9 @@ module.exports = function karmaConfig (config) {
       // Output code coverage files
       'coverage'
     ],
+    client: {
+      captureConsole: true
+    },
 
     files: [
       // Grab all files in the app folder that contain .spec.
@@ -31,7 +34,8 @@ module.exports = function karmaConfig (config) {
 
     browsers: [
       // Run tests using PhantomJS
-      'PhantomJS'
+      // 'PhantomJS',
+      'ChromeHeadless'
     ],
 
     singleRun: true,
@@ -43,6 +47,12 @@ module.exports = function karmaConfig (config) {
         {type: 'text-summary'},
         {type: 'html'}
       ]
+    },
+    customLaunchers: {
+      ChromeTravisCi: {
+        base: 'Chrome',
+        flags: ['--no-sandbox']
+      }
     },
 
     webpack: require('./webpack.config'),
